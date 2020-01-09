@@ -22,3 +22,21 @@ git clone https://github.com/apollographql/fullstack-tutorial.git
 > that teams practics *Schema First Development* and agree upon the schema first before any API
 > development begins.
 >
+
+> From https://www.apollographql.com/docs/tutorial/data-source
+>
+> **Hook up your data sources**
+>
+> Now that we've constructed our schema, we need to hook up our data sources to our GraphQL API.
+> GraphQL APIs are extremely flexible because you can layer them on top of any service, including
+> any business logic, REST APIs, databases, or gRPC services.
+>
+> Apollo makes connecting these services to your graph simple with our data source API. An **Apollo
+> data source** is a class that encapsulates all of the data fetching logic, as well as caching and
+> deduplication, for a particular service.  By using Apollo data sources to hook up your services to
+> your graph API, you're also following best practices for organizing your code.
+>
+> In the next sections, we'll build data sources for a REST API and a SQL database and connect them
+> to Apollo Server.  Don't worry if you're not familiar with either of those technologies, you won't
+> need to understand them deeply in order to follow the examples.
+>

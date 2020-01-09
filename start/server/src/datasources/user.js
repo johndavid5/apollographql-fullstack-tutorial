@@ -1,7 +1,13 @@
 const { DataSource } = require('apollo-datasource');
 const isEmail = require('isemail');
 
+/**
+* Apollo doesn't have support for a SQL data source yet (although we'd love to help guide you if you're
+* interested in contributing), so we will need to create a custom data source for our database by extending
+* the generic Apollo data source class. You can create your own with the apollo-datasource package.
+*/
 class UserAPI extends DataSource {
+
   constructor({ store }) {
     super();
     this.store = store;

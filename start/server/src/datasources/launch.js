@@ -23,8 +23,8 @@ class LaunchAPI extends RESTDataSource {
         console.log(`${sWho}(): SHEMP: Got response = `, response, `, Moe...` );
 
         // Transform the raw launches to a more friendly
-        // structure corresponding to the shape our schema
-        // expects, which is the Launch data type...via launchReducer()...
+        // structure corresponding to the shape that our schema
+        // expects, which is the Launch data type...via this.launchReducer()...
         return Array.isArray(response)
             ? response.map(launch => this.launchReducer(launch))
               : [];
