@@ -1,0 +1,5 @@
+{
+ "operationName": "GetLaunchById",
+ "variables": { "id": 60 },
+ "query": "query GetLaunchById($id: ID!) {\n  launch(id: $id) {\n    id\n    rocket {\n      id\n      type\n    }\n  }\n}\n"
+}

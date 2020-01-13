@@ -1,0 +1,76 @@
+https://www.apollographql.com/docs/tutorial/resolvers/
+*Write your graph's resolvers.*
+
+=> operation keyword: 'query' or 'mutation'
+(give queries descriptive names so they're discoverable in Apollo developer tooling)
+<operation_keyword> <name> {
+  <body_of_query>
+}
+
+<operation_keyword> <name=GetLaunches> {
+  <query_type='launches' field> {
+    <selection_set>
+  }
+}
+
+query GetLaunches {
+    launches {
+        id
+        mission {
+            name
+        }
+    }
+}
+
+query GetLaunches {
+    launches {
+        id
+        site
+        mission {
+            name
+        }
+    }
+}
+
+query GetLaunchById {
+  launch(id: 60) {
+    id
+    rocket {
+      id
+      type
+    }
+  }
+}
+
+...or...using query variables...
+
+query GetLaunchById($id: ID!) {
+  launch(id: $id) {
+    id
+    rocket {
+      id
+      type
+    }
+  }
+}
+
+...with { "id": 60 } in query variables...
+...but "playground" doesn't seem to be sending the query variables...
+
+http://localhost:4000/ POST
+query-01.json:
+{
+ operationName: "GetLaunchById",
+ variables: { "id": 60 },
+ query: "query GetLaunchById($id: ID!) {\n  launch(id: $id) {\n    id\n    rocket {\n      id\n      type\n    }\n  }\n}\n"
+}
+
+https://stackoverflow.com/questions/18611903/how-to-pass-payload-via-json-file-for-curl
+
+$ curl -v -X POST http://server/api/v1/places.json --header "Content-Type: application/json" -d "operationName: 'GetLaunchById',
+ variables: { 'id': 60 }, \
+ query: 'query GetLaunchById($id: ID!) {\n  launch(id: $id) {\n    id\n    rocket {\n      id\n      type\n    }\n  }\n}\n"
+
+$ curl -v -X POST http://localhost:4000 --header "Content-Type: application/json" -d @query-01.json 
+
+Or use Postman...

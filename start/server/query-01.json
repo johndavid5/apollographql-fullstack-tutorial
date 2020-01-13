@@ -1,0 +1,5 @@
+{
+ "operationName": "GetLaunches",
+ "variables": {},
+ "query": "query GetLaunches {\n  launches {\n    id\n    mission {\n      name\n    }\n  }\n}"
+}

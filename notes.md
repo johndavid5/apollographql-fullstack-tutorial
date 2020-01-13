@@ -1,5 +1,7 @@
-1. https://www.apollographql.com/docs/tutorial/introduction/
-2. https://www.apollographql.com/docs/tutorial/schema/
+1. https://www.apollographql.com/docs/tutorial/introduction/ Introduction
+2. https://www.apollographql.com/docs/tutorial/schema/ Build a schema
+3. https://www.apollographql.com/docs/tutorial/data-source/ Hook up your data sources
+4. https://www.apollographql.com/docs/tutorial/resolvers/ Write your graph's resolvers
 
 git clone https://github.com/apollographql/fullstack-tutorial.git
 
