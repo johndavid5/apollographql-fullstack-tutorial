@@ -54,8 +54,9 @@ query GetLaunchById($id: ID!) {
   }
 }
 
-...with { "id": 60 } in query variables...
-...but "playground" doesn't seem to be sending the query variables...
+QUERY_VARIABLES: { "id": 60 }
+
+NOTE: With { "id": 60 } in QUERY_VARIABLES (not HTTP HEADERS!)
 
 http://localhost:4000/ POST
 query-01.json:
@@ -74,3 +75,141 @@ $ curl -v -X POST http://server/api/v1/places.json --header "Content-Type: appli
 $ curl -v -X POST http://localhost:4000 --header "Content-Type: application/json" -d @query-01.json 
 
 Or use Postman...
+
+query-03.js...
+--------------
+query GetLaunches {
+  launches(pageSize: 3) {
+    launches {
+      id
+      mission {
+        name
+      }
+    },
+    cursor,
+    hasMore
+  }
+}
+
+query-04.js...
+--------------
+query GetLaunches {
+  launches(pageSize: 3, after: "1575566963") {
+    launches {
+      id
+      mission {
+        name
+      }
+    },
+    cursor,
+    hasMore
+  }
+}
+
+- - - -
+
+query GetLaunches {
+  launches(pageSize: 1) {
+    launches {
+      id
+      mission {
+        name,
+        missionPatch
+      }
+    },
+    cursor,
+    hasMore
+  }
+}
+
+query GetLaunches {
+  launches(pageSize: 1) G
+mutation LoginUser {
+  login(email: "daisy@apollographql.com")
+}
+
+RESPONSE:
+{
+  "data": {
+    "login": "ZGFpc3lAYXBvbGxvZ3JhcGhxbC5jb20="
+  }
+}
+
+- - - - 
+
+mutation BookTrips {
+  bookTrips(launchIds: [67, 68, 69]) {
+    success
+    message
+    launches {
+      id
+    }
+  }
+}
+
+with HTTP HEADERS:
+{
+  "authorization": "ZGFpc3lAYXBvbGxvZ3JhcGhxbC5jb20="
+}
+
+- - - - 
+
+mutation CancelTrip {
+  cancelTrip(launchId: 69) {
+    success
+    message
+    launches {
+      id
+    }
+  }
+}
+
+with HTTP HEADERS:
+{
+  "authorization": "ZGFpc3lAYXBvbGxvZ3JhcGhxbC5jb20="
+}
+
+- - - - 
+
+mutation BookTrips {
+  bookTrips(launchIds: [69]) {
+    success
+    message
+    launches {
+      id
+    }
+  }
+}
+
+with HTTP HEADERS:
+{
+  "authorization": "ZGFpc3lAYXBvbGxvZ3JhcGhxbC5jb20="
+}
+
+- - - -
+
+mutation LindaTripp {
+  lindaTripp(dressId: 69) {
+    success
+    message
+    launches {
+      id
+    }
+  }
+}
+
+*without* HTTP HEADERS:
+{
+  "authorization": "ZGFpc3lAYXBvbGxvZ3JhcGhxbC5jb20="
+}
+
+RESPONSE:
+{
+  "data": {
+    "lindaTripp": {
+      "success": true,
+      "message": "dry-cleaning of dress with ID 69 cancelled",
+      "launches": null
+    }
+  }
+}

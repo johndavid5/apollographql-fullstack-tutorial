@@ -1,0 +1,4 @@
+{ 
+   "operationName" : "GetLaunches",
+   "query":  "query GetLaunches {\n  launches(pageSize: 3, after: \"1575566963\") {\n    launches {\n      id\n      mission {\n        name\n      }\n    },\n    cursor,\n    hasMore\n  }\n}"
+}
