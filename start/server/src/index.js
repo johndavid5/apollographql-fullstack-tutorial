@@ -31,13 +31,13 @@ const server = new ApolloServer({
 
         // simple auth check on every request
         const auth = req.headers && req.headers.authorization || '';
-        console.log(`${sWho}(): SHEMP: Moe, auth = `, auth );
+        //console.log(`${sWho}(): SHEMP: Moe, auth = `, auth );
 
         const email = Buffer.from(auth, 'base64').toString('ascii');
-        console.log(`${sWho}(): SHEMP: Moe, from auth, email = `, email );
+        //console.log(`${sWho}(): SHEMP: Moe, from auth, email = `, email );
 
         if(!isEmail.validate(email)){
-            console.log(`${sWho}(): SHEMP: Sorry, Moe, dha email '${email}' don't appear valid...`);
+            //console.log(`${sWho}(): SHEMP: Sorry, Moe, dha email '${email}' don't appear valid...`);
             return { user: null };
         }
 
@@ -46,7 +46,7 @@ const server = new ApolloServer({
 
         const user = users && users[0] || null;
 
-        console.log(`${sWho}(): SHEMP: Hey, Moe, got dha user = `, user );
+        //console.log(`${sWho}(): SHEMP: Hey, Moe, got dha user = `, user );
 
         return { user: { ...user.dataValues } };
     },
